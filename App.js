@@ -8,21 +8,44 @@ import {
 	Image,
 	Button,
 	Alert,
+	Platform, //? Aloow you to check the device paltform !
+	Dimensions, //? Alow us to know the exact dimensions on the device screen !
 } from 'react-native'
 
 export default function App() {
-	let x = 1
+	console.log(Dimensions.get('screen'))
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text>Hello World!</Text>
 			<Button
+				style={{
+					width: '50%',
+				}}
 				color="orange"
-				title="Click me !"
+				title="Click me Alert!"
 				onPress={() => {
 					Alert.alert('My title', 'My message', [
-						{ text: 'Yes' },
-						{ text: 'No' },
+						{
+							text: 'Yes',
+							onPress: () => {
+								console.log('Yes')
+							},
+						},
+						{
+							text: 'No',
+							onPress: () => {
+								console.log('No')
+							},
+						},
 					])
+				}}
+			/>
+			<Button
+				color="red"
+				title="Click me Prompt!"
+				onPress={() => {
+					Alert.prompt('My title', 'My message', (text) => console.log(text)) //! Only in IOS !
 				}}
 			/>
 			<TouchableHighlight
@@ -43,6 +66,7 @@ export default function App() {
 	)
 }
 
+//? Is NOT CSS - only inspierd by CSS !
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
